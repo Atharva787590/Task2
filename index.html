@@ -3,59 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Task2 — To-Do List App</title>
+  <title>Task2 — Neo-Brutalist To-Do App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
   <main class="app">
-    <section class="todo-shell">
-      <header class="app-header">
-        <p class="eyebrow">Task 2</p>
-        <h1>To-Do List</h1>
-        <p class="subtitle">
-          A state-driven task manager with CRUD operations, filtering, and local storage persistence.
-        </p>
-      </header>
+    <section class="hero-card">
+      <p class="sticker">TASK 2</p>
+      <h1>TO-DO <span>LIST</span></h1>
+      <p class="hero-text">
+        A client-side task manager with full CRUD, filtering, localStorage persistence,
+        and interactive state-driven rendering.
+      </p>
+    </section>
 
-      <section class="todo-input-card">
-        <form id="todo-form" class="todo-form">
-          <label class="sr-only" for="todo-input">Add a new task</label>
-          <input
-            id="todo-input"
-            type="text"
-            placeholder="Enter a task..."
-            autocomplete="off"
-            maxlength="120"
-          />
-          <button type="submit" class="primary-btn">Add Task</button>
-        </form>
+    <section class="stats-grid">
+      <article class="stat-card">
+        <p class="stat-label">Total</p>
+        <h2 id="total-count">0</h2>
+      </article>
 
-        <p id="form-message" class="form-message" aria-live="polite"></p>
-      </section>
+      <article class="stat-card yellow-card">
+        <p class="stat-label">Active</p>
+        <h2 id="active-count">0</h2>
+      </article>
 
-      <section class="toolbar-card">
-        <div class="task-summary">
-          <span id="task-count">0</span> task(s) total
-        </div>
+      <article class="stat-card purple-card">
+        <p class="stat-label">Completed</p>
+        <h2 id="completed-count">0</h2>
+      </article>
+    </section>
 
-        <div class="filters" role="tablist" aria-label="Task filters">
-          <button class="filter-btn active" data-filter="all" type="button">All</button>
-          <button class="filter-btn" data-filter="active" type="button">Active</button>
-          <button class="filter-btn" data-filter="completed" type="button">Completed</button>
-        </div>
+    <section class="panel add-panel">
+      <form id="todo-form" class="todo-form">
+        <input
+          id="todo-input"
+          type="text"
+          placeholder="TYPE A NEW TASK..."
+          maxlength="120"
+          autocomplete="off"
+        />
 
-        <button id="clear-completed" class="secondary-btn" type="button">
-          Clear Completed
-        </button>
-      </section>
+        <select id="priority-select" aria-label="Task priority">
+          <option value="low">LOW</option>
+          <option value="medium" selected>MEDIUM</option>
+          <option value="high">HIGH</option>
+        </select>
 
-      <section class="todo-list-card">
-        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
-        <div id="empty-state" class="empty-state">
-          No tasks yet. Add your first task to begin.
-        </div>
-      </section>
+        <button type="submit" class="primary-btn">ADD TASK</button>
+      </form>
+
+      <p id="form-message" class="form-message" aria-live="polite"></p>
+    </section>
+
+    <section class="panel toolbar">
+      <div class="filter-group" id="filter-group">
+        <button class="filter-btn active" data-filter="all" type="button">ALL</button>
+        <button class="filter-btn" data-filter="active" type="button">ACTIVE</button>
+        <button class="filter-btn" data-filter="completed" type="button">COMPLETED</button>
+      </div>
+
+      <div class="search-wrap">
+        <input id="search-input" type="text" placeholder="SEARCH TASKS..." />
+      </div>
+
+      <div class="bulk-actions" id="bulk-actions">
+        <button class="secondary-btn" data-action="mark-all" type="button">MARK ALL DONE</button>
+        <button class="secondary-btn" data-action="clear-completed" type="button">CLEAR COMPLETED</button>
+      </div>
+    </section>
+
+    <section class="panel progress-panel">
+      <div class="progress-top">
+        <strong>PROGRESS</strong>
+        <span id="progress-text">0% COMPLETED</span>
+      </div>
+      <div class="progress-track">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+    </section>
+
+    <section class="panel list-panel">
+      <ul id="todo-list" class="todo-list"></ul>
+      <div id="empty-state" class="empty-state">
+        <h3>NO TASKS YET</h3>
+        <p>ADD A TASK TO START BUILDING YOUR LIST.</p>
+      </div>
     </section>
   </main>
 </body>
